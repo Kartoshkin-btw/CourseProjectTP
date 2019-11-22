@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Course_progect_TP.Models.Route>
+
+@{
+    ViewBag.Title = "GetAllRoutes";
+}
+
+<h2>GetAllRoutes</h2>
+
+<p>
+    @Html.ActionLink("Create New Route", "CreateRoute")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Route)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RouteNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Start_stop)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Final_stop)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Travel_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Route_state)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id_Route)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RouteNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Start_stop)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Final_stop)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Travel_time)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Route_state)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "EditRoute", new { id = item.Id_Route }) |
+        @Html.ActionLink("Delete", "DeleteRoute", new { id = item.Id_Route })
+    </td>
+</tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("To the main", "Index")
+</p>

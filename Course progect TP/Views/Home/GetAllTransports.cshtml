@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Course_progect_TP.Models.Transport>
+
+@{
+    ViewBag.Title = "GetAllTransports";
+}
+
+<h2>GetAllTransports</h2>
+
+<p>
+    @Html.ActionLink("Create New Transport", "CreateTransport")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Transport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Release_year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Transport_state)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id_Transport)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Model)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Number)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Release_year)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Transport_state)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "EditTransport", new { id = item.Id_Transport }) |
+        @Html.ActionLink("Delete", "DeleteTransport", new { id = item.Id_Transport })
+    </td>
+</tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("To the main", "Index")
+</p>
