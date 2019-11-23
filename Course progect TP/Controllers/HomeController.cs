@@ -13,6 +13,7 @@ namespace Course_progect_TP.Controllers
         RouteDAO routeDAO = new RouteDAO();
         TransportDAO transportDAO = new TransportDAO();
         UserDAO userDAO = new UserDAO();
+        FlightDAO flightDAO = new FlightDAO();
         public ActionResult Index()
         {
             return View("Index");
@@ -198,6 +199,67 @@ namespace Course_progect_TP.Controllers
             catch
             {
                 return View("DeleteUser");
+            }
+        }
+        public ActionResult GetFlight(int id)
+        {
+            return View(flightDAO.GetFlights(id));
+        }
+        public ActionResult CreateFlight()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateFlight([Bind(Exclude = "Id_Flight")] Flight flight)
+        {
+            try
+            {
+                if (flightDAO.CreateFlight(flight))
+                    return Redirect("GetAllRoutes)");
+                else
+                    return View("CreateFlight");
+            }
+            catch
+            {
+                return View("CreateFlight");
+            }
+        }
+        public ActionResult EditFlight(int id)
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult EditFlight(int id, Flight flight)
+        {
+            try
+            {
+                if (flightDAO.EditFlight(id, flight))
+                    return RedirectToAction("GetAllRoutes");
+                else
+                    return View("EditFlight");
+            }
+            catch
+            {
+                return View("EditFlight");
+            }
+        }
+        public ActionResult DeleteFlight(int id)
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult DeleteFlight(int id, Flight flight)
+        {
+            try
+            {
+                if (flightDAO.DeleteFlight(id))
+                    return RedirectToAction("GetAllRoutes");
+                else
+                    return View("DeleteFlight");
+            }
+            catch
+            {
+                return View("DeleteFlight");
             }
         }
     }

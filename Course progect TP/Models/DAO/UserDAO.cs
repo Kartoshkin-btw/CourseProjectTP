@@ -73,10 +73,10 @@ namespace Course_progect_TP.Models.DAO
             Connect();
             try
             {
-                SqlCommand cmd = new SqlCommand("UPDATE [User] SET Surname = @Surname, Name = @Name, Patronomic = @Patronomic, Date_of_birth = @Date_of_birth, Experience = @Experience, Role = @Role, Login = @Login WHERE Id_User = @Id_User", Connection);
+                SqlCommand cmd = new SqlCommand("UPDATE [User] SET Surname = @Surname, Name = @Name, Patronymic = @Patronymic, Date_of_birth = @Date_of_birth, Experience = @Experience, Role = @Role, Login = @Login WHERE Id_User = @Id_User", Connection);
                 cmd.Parameters.Add(new SqlParameter("@Surname", user.Surname));
                 cmd.Parameters.Add(new SqlParameter("@Name", user.Name));
-                cmd.Parameters.Add(new SqlParameter("@Patronymic", user.Name));
+                cmd.Parameters.Add(new SqlParameter("@Patronymic", user.Patronymic));
                 cmd.Parameters.Add(new SqlParameter("@Date_of_birth", user.Date_of_birth));
                 cmd.Parameters.Add(new SqlParameter("@Experience", user.Experience));
                 cmd.Parameters.Add(new SqlParameter("@Role", user.Role));

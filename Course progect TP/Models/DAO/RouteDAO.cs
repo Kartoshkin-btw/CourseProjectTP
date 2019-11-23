@@ -109,6 +109,5 @@ namespace Course_progect_TP.Models.DAO
             }
             return result;
         }
-
     }
 }

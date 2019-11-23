@@ -59,6 +59,7 @@
         @Html.DisplayFor(modelItem => item.Route_state)
     </td>
     <td>
+        @Html.ActionLink("Flights", "GetFlight", new { id = item.Id_Route }) |
         @Html.ActionLink("Edit", "EditRoute", new { id = item.Id_Route }) |
         @Html.ActionLink("Delete", "DeleteRoute", new { id = item.Id_Route })
     </td>
