@@ -258,6 +258,8 @@
     <Content Include="Views\Home\CreateFlight.cshtml" />
     <Content Include="Views\Home\EditFlight.cshtml" />
     <Content Include="Views\Home\DeleteFlight.cshtml" />
+    <Content Include="Views\Home\GetDriversFlights.cshtml" />
+    <Content Include="Views\Home\GetConductorsFlights.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

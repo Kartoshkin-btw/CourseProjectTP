@@ -115,5 +115,73 @@ namespace Course_progect_TP.Models.DAO
             }
             return result;
         }
+        public List<Flight> GetDriversFlights(string login)
+             {
+            Connect();
+        List<Flight> flightList = new List<Flight>();
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM [Flight] WHERE Id_Driver = (SELECT Id_User FROM [User] WHERE login = @login)", Connection);
+                command.Parameters.AddWithValue("@Login", login);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Flight flight = new Flight();
+        flight.Id_Flight = Convert.ToInt32(reader["Id_Flight"]);
+                    flight.Flight_date = Convert.ToString(reader["Flight_date"]);
+                    flight.Start_time = Convert.ToString(reader["Start_time"]);
+                    flight.End_time = Convert.ToString(reader["End_time"]);
+                    flight.Id_Route = Convert.ToInt32(reader["Id_Route"]);
+                    flight.Id_Driver = Convert.ToInt32(reader["Id_Driver"]);
+                    flight.Id_Conductor = Convert.ToInt32(reader["Id_Conductor"]);
+                    flight.Id_Transport = Convert.ToInt32(reader["Id_Transport"]);
+                    flightList.Add(flight);
+                }
+    reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return flightList;
+        }
+        public List<Flight> GetConductorsFlights(string login)
+        {
+            Connect();
+            List<Flight> flightList = new List<Flight>();
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM [Flight] WHERE Id_Conductor = (SELECT Id_User FROM [User] WHERE login = @login)", Connection);
+                command.Parameters.AddWithValue("@Login", login);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Flight flight = new Flight();
+                    flight.Id_Flight = Convert.ToInt32(reader["Id_Flight"]);
+                    flight.Flight_date = Convert.ToString(reader["Flight_date"]);
+                    flight.Start_time = Convert.ToString(reader["Start_time"]);
+                    flight.End_time = Convert.ToString(reader["End_time"]);
+                    flight.Id_Route = Convert.ToInt32(reader["Id_Route"]);
+                    flight.Id_Driver = Convert.ToInt32(reader["Id_Driver"]);
+                    flight.Id_Conductor = Convert.ToInt32(reader["Id_Conductor"]);
+                    flight.Id_Transport = Convert.ToInt32(reader["Id_Transport"]);
+                    flightList.Add(flight);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return flightList;
+        }
     }
 }

@@ -276,5 +276,15 @@ namespace Course_progect_TP.Controllers
                 return View("DeleteFlight");
             }
         }
+        [Authorize(Roles = "Driver")]
+        public ActionResult GetDriversFlights() 
+        {
+            return View(flightDAO.GetDriversFlights(User.Identity.Name));
+        }
+        [Authorize(Roles = "Conductor")]
+        public ActionResult GetConductorsFlights()
+        {
+            return View(flightDAO.GetConductorsFlights(User.Identity.Name));
+        }
     }
 }

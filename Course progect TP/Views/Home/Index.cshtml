@@ -16,5 +16,18 @@
         @Html.ActionLink("Show users", "GetAllUsers")
     </p>
 }
+@if (Request.IsAuthenticated && User.IsInRole("Driver"))
+{
+    <p>
+        @Html.ActionLink("Show my flights", "GetDriversFlights")
+    </p>
+}
+@if (Request.IsAuthenticated && User.IsInRole("Conductor"))
+{
+    <p>
+        @Html.ActionLink("Show my flights", "GetConductorsFlights")
+    </p>
+}
+
 
 
