@@ -22,6 +22,7 @@ namespace Course_progect_TP.Controllers
         {
             return View(routeDAO.GetAllRoutes());
         }
+        [Authorize(Roles ="Admin")]
         public ActionResult CreateRoute()
         {
             return View();
@@ -41,6 +42,7 @@ namespace Course_progect_TP.Controllers
                 return View("CreateRoute");
             }
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult EditRoute(int id)
         {
             return View();
@@ -60,6 +62,7 @@ namespace Course_progect_TP.Controllers
                 return View("EditRoute");
             }
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteRoute(int id)
         {
             return View();
@@ -79,10 +82,12 @@ namespace Course_progect_TP.Controllers
                 return View("DeleteRoute");
             }
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult GetAllTransports()
         {
             return View(transportDAO.GetAllTransports());
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateTransport()
         {
             return View();
@@ -102,6 +107,7 @@ namespace Course_progect_TP.Controllers
                 return View("CreateTransport");
             }
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult EditTransport(int id)
         {
             return View();
@@ -121,6 +127,7 @@ namespace Course_progect_TP.Controllers
                 return View("EditTransport");
             }
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteTransport(int id)
         {
             return View();
@@ -140,10 +147,12 @@ namespace Course_progect_TP.Controllers
                 return View("DeleteTransport");
             }
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult GetAllUsers()
         {
             return View(userDAO.GetAllUsers());
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateUser()
         {
             return View();
@@ -163,6 +172,7 @@ namespace Course_progect_TP.Controllers
                 return View("CreateUser");
             }
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult EditUser(int id)
         {
             return View();
@@ -182,6 +192,7 @@ namespace Course_progect_TP.Controllers
                 return View("EditUser");
             }
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteUser(int id)
         {
             return View();
@@ -201,10 +212,11 @@ namespace Course_progect_TP.Controllers
                 return View("DeleteUser");
             }
         }
-        public ActionResult GetFlight(int id)
+        public ActionResult GetFlights(int id)
         {
             return View(flightDAO.GetFlights(id));
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult CreateFlight()
         {
             return View();
@@ -224,6 +236,7 @@ namespace Course_progect_TP.Controllers
                 return View("CreateFlight");
             }
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult EditFlight(int id)
         {
             return View();
@@ -243,6 +256,7 @@ namespace Course_progect_TP.Controllers
                 return View("EditFlight");
             }
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteFlight(int id)
         {
             return View();

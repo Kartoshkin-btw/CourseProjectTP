@@ -4,11 +4,13 @@
     ViewBag.Title = "GetAllRoutes";
 }
 
-<h2>GetAllRoutes</h2>
-
-<p>
-    @Html.ActionLink("Create New Route", "CreateRoute")
-</p>
+<h2>Routes</h2>
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create new route", "CreateRoute")
+    </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -35,36 +37,40 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Id_Route)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.RouteNumber)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Start_stop)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Final_stop)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Price)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Travel_time)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Route_state)
-    </td>
-    <td>
-        @Html.ActionLink("Flights", "GetFlight", new { id = item.Id_Route }) |
-        @Html.ActionLink("Edit", "EditRoute", new { id = item.Id_Route }) |
-        @Html.ActionLink("Delete", "DeleteRoute", new { id = item.Id_Route })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Route)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RouteNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Start_stop)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Final_stop)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Travel_time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Route_state)
+            </td>
+            <td>
+                @Html.ActionLink("Flights", "GetFlights", new { id = item.Id_Route })
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("| Edit ", "EditRoute", new { id = item.Id_Route })
+                    @Html.ActionLink("| Delete", "DeleteRoute", new { id = item.Id_Route })
+                }
+            </td>
+        </tr>
+    }
 
 </table>
 <p>

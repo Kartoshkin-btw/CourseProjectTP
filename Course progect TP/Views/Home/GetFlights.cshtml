@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Course_progect_TP.Models.Flight>
+
+@{
+    ViewBag.Title = "GetFlights";
+}
+
+<h2>Flights</h2>
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New Flight", "CreateFlight")
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Flight_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Start_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.End_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Route)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Driver)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Conductor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Transport)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flight_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Start_time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.End_time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Route)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Driver)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Conductor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_Transport)
+            </td>
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "EditFlight", new { id = item.Id_Flight }) |
+                    @Html.ActionLink("Delete", "DeleteFlight", new { id = item.Id_Flight })
+                </td>
+            }
+        </tr>
+
+    }
+
+</table>
+<p>
+    @Html.ActionLink("To the Routes list", "GetAllRoutes")
+</p>

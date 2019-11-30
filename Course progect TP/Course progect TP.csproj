@@ -254,7 +254,7 @@
     <Content Include="Views\Home\CreateUser.cshtml" />
     <Content Include="Views\Home\EditUser.cshtml" />
     <Content Include="Views\Home\DeleteUser.cshtml" />
-    <Content Include="Views\Home\GetFlight.cshtml" />
+    <Content Include="Views\Home\GetFlights.cshtml" />
     <Content Include="Views\Home\CreateFlight.cshtml" />
     <Content Include="Views\Home\EditFlight.cshtml" />
     <Content Include="Views\Home\DeleteFlight.cshtml" />

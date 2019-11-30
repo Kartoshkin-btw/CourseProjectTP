@@ -3,15 +3,18 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Urban transport</h2>
 <p>
-    @Html.ActionLink("GetAllRoutes", "GetAllRoutes")
+    @Html.ActionLink("Show routes", "GetAllRoutes")
 </p>
-<p>
-    @Html.ActionLink("GetAllTransports", "GetAllTransports")
-</p>
-<p>
-    @Html.ActionLink("GetAllUsers", "GetAllUsers")
-</p>
+@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Show transports", "GetAllTransports")
+    </p>
+    <p>
+        @Html.ActionLink("Show users", "GetAllUsers")
+    </p>
+}
 
 
