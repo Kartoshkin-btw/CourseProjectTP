@@ -7,7 +7,13 @@
 <h2>Users</h2>
 
 <p>
-    @Html.ActionLink("Create New User", "CreateUser")
+    @Html.ActionLink("Create new user", "CreateUser")
+</p>
+<p>
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Register new user", "Register", "Account")
+    }
 </p>
 <table class="table">
     <tr>

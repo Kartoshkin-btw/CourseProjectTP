@@ -13,9 +13,12 @@
 }
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Id_Route)
-        </th>
+        @if (User.IsInRole("Admin"))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Route)
+            </th>
+        }
         <th>
             @Html.DisplayNameFor(model => model.RouteNumber)
         </th>
@@ -31,45 +34,57 @@
         <th>
             @Html.DisplayNameFor(model => model.Travel_time)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Route_state)
-        </th>
+        @if (User.IsInRole("Admin"))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.Route_state)
+            </th>
+        }
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id_Route)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RouteNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Start_stop)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Final_stop)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Travel_time)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Route_state)
-            </td>
-            <td>
-                @Html.ActionLink("Flights", "GetFlights", new { id = item.Id_Route })
-                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        if (item.Route_state == 1)
+        {
+            <tr>
+                @if (User.IsInRole("Admin"))
                 {
-                    @Html.ActionLink("| Edit ", "EditRoute", new { id = item.Id_Route })
-                    @Html.ActionLink("| Delete", "DeleteRoute", new { id = item.Id_Route })
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id_Route)
+                    </td>
                 }
-            </td>
-        </tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RouteNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Start_stop)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Final_stop)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Travel_time)
+                </td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Route_state)
+                    </td>
+                }
+                <td>
+                    @Html.ActionLink("Flights", "GetFlights", new { id = item.Id_Route })
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("| Edit ", "EditRoute", new { id = item.Id_Route })
+                        @Html.ActionLink("| Delete", "DeleteRoute", new { id = item.Id_Route })
+                    }
+                </td>
+            </tr>
+        }
     }
 
 </table>
