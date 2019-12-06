@@ -114,5 +114,33 @@ namespace Course_progect_TP.Models.DAO
             }
             return result;
         }
+        public String GetUserName(int id) 
+        {
+            String Name = "";
+            Connect();
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT [Surname], [Name], [Patronymic] FROM [User] WHERE Id_User = @Id_User;", Connection);
+                command.Parameters.AddWithValue("@Id_User", id);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Name = Convert.ToString(reader["Surname"]) + " " +
+                        Convert.ToString(reader["Name"]) + " " +
+                        Convert.ToString(reader["Patronymic"]);
+
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return Name;
+        }
     }
 }

@@ -109,5 +109,25 @@ namespace Course_progect_TP.Models.DAO
             }
             return result;
         }
+        public string GetRouteNumber(int id)
+        {
+            String RouteNumber;
+            Connect();
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT [RouteNumber] FROM [Route] WHERE Id_Route = @Id_Route;", Connection);
+                command.Parameters.AddWithValue("@Id_Route", id);
+                RouteNumber = Convert.ToString(command.ExecuteScalar());
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return RouteNumber;
+        }
     }
 }

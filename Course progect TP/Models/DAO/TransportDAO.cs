@@ -105,5 +105,32 @@ namespace Course_progect_TP.Models.DAO
             }
             return result;
         }
+        public String GetTransport(int id)
+        {
+            String TransportInf = "";
+            Connect();
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT [Number], [Model] FROM [Transport] WHERE Id_Transport = @Id_Transport;", Connection);
+                command.Parameters.AddWithValue("@Id_Transport", id);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    TransportInf = Convert.ToString(reader["Model"]) + "( " +
+                        Convert.ToString(reader["Number"]) + ")";
+
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return TransportInf;
+        }
     }
 }

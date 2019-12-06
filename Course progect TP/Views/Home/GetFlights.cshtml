@@ -22,18 +22,21 @@
         <th>
             @Html.DisplayNameFor(model => model.End_time)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Id_Route)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Id_Driver)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Id_Conductor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Id_Transport)
-        </th>
+        @if (Request.IsAuthenticated)
+        {
+            <th>
+                Route Number
+            </th>
+            <th>
+                Driver
+            </th>
+            <th>
+                Conductor
+            </th>
+            <th>
+                Transport number
+            </th>
+        }
         <th></th>
     </tr>
 
@@ -49,18 +52,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.End_time)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id_Route)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id_Driver)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id_Conductor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id_Transport)
-            </td>
+            @if (Request.IsAuthenticated)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.GetRouteNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GetDriverName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GetConductorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GetTransport)
+                </td>
+            }
             @if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
                 <td>
