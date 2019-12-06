@@ -129,5 +129,24 @@ namespace Course_progect_TP.Models.DAO
             }
             return RouteNumber;
         }
+        public void ChangeState(int id, int state)
+        {
+            Connect();
+            try
+            {
+                SqlCommand command = new SqlCommand("UPDATE [Route] SET Route_state = @Route_state WHERE Id_Route = @Id_Route", Connection);
+                command.Parameters.Add(new SqlParameter("@Route_state", state));
+                command.Parameters.Add(new SqlParameter("@Id_Route", id));
+                command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Disconnect();
+            }
+        }
     }
 }

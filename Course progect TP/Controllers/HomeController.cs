@@ -286,5 +286,11 @@ namespace Course_progect_TP.Controllers
         {
             return View(flightDAO.GetConductorsFlights(User.Identity.Name));
         }
+        [Authorize(Roles = "Admin")]
+        public ActionResult ChangeState(int id, int state)
+        {
+            routeDAO.ChangeState(id, state);
+            return RedirectToAction("GetAllRoutes", new { Route_State = state });
+        }
     }
 }

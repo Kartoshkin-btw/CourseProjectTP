@@ -39,6 +39,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Route_state)
             </th>
+            <td>
+                Change
+            </td>
         }
         <th></th>
     </tr>
@@ -72,7 +75,10 @@
                 @if (User.IsInRole("Admin"))
                 {
                     <td>
-                        @Html.DisplayFor(modelItem => item.Route_state)
+                        @Html.DisplayFor(modelItem => item.GetState)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Remove", "ChangeState", new { id = item.Id_Route, state = 2 })
                     </td>
                 }
                 <td>
@@ -84,6 +90,44 @@
                     }
                 </td>
             </tr>
+        }
+        else
+        {
+            if (User.IsInRole("Admin"))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id_Route)
+                    </td>                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RouteNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Start_stop)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Final_stop)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Travel_time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GetState)
+                    </td>
+                    <td>
+                        @Html.ActionLink("To accept", "ChangeState", new { id = item.Id_Route, state = 1 })
+
+                    </td>              
+                    <td>
+                        @Html.ActionLink("Flights", "GetFlights", new { id = item.Id_Route })
+                        @Html.ActionLink("| Edit ", "EditRoute", new { id = item.Id_Route })
+                        @Html.ActionLink("| Delete", "DeleteRoute", new { id = item.Id_Route })
+                    </td>
+                </tr>
+            }
         }
     }
 

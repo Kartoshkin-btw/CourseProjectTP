@@ -17,5 +17,22 @@ namespace Course_progect_TP.Models
         public int Price { get; set; }
         public string Travel_time { get; set; }
         public int Route_state { get; set; }
+        public string GetState
+        {
+            get
+            {
+                String State;
+                if (Route_state == 1)
+                {
+                    State = "Accepted";
+                }
+                else
+                {
+                    State = "Not accepted";
+                }
+                return State;
+            }
+            set { }
+        }
     }
 }
