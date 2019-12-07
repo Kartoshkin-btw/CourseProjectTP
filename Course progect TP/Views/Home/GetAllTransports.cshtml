@@ -21,10 +21,10 @@
             @Html.DisplayNameFor(model => model.Number)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Release_year)
+            Release year
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Transport_state)
+            State
         </th>
         <th></th>
     </tr>
@@ -44,11 +44,11 @@
         @Html.DisplayFor(modelItem => item.Release_year)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.Transport_state)
+        @Html.DisplayFor(modelItem => item.GetTransportState)
     </td>
     <td>
-        @Html.ActionLink("Edit", "EditTransport", new { id = item.Id_Transport }) |
-        @Html.ActionLink("Delete", "DeleteTransport", new { id = item.Id_Transport })
+        @Html.ActionLink("Редактировать", "EditTransport", new { id = item.Id_Transport }) |
+        @Html.ActionLink("Удалить", "DeleteTransport", new { id = item.Id_Transport })
     </td>
 </tr>
 }

@@ -14,13 +14,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Flight_date)
+            Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Start_time)
+            Start time
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.End_time)
+            End time
         </th>
         @if (Request.IsAuthenticated)
         {
@@ -70,8 +70,8 @@
             @if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
                 <td>
-                    @Html.ActionLink("Edit", "EditFlight", new { id = item.Id_Flight }) |
-                    @Html.ActionLink("Delete", "DeleteFlight", new { id = item.Id_Flight })
+                    @Html.ActionLink("Редактировать", "EditFlight", new { id = item.Id_Flight }) |
+                    @Html.ActionLink("Удалить", "DeleteFlight", new { id = item.Id_Flight })
                 </td>
             }
         </tr>

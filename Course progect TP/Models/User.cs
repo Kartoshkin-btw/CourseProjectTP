@@ -15,7 +15,38 @@ namespace Course_progect_TP.Models
         public string Patronymic { get; set; }
         public string Date_of_birth { get; set; }
         public int Experience { get; set; }
-        public string Role { get; set; }
+        public int Role { get; set; }
         public string Login { get; set; }
+        public string GetRole
+        {
+            get
+            {
+                String RoleString;
+                if (Role == 1)
+                {
+                    RoleString = "Администратор";
+                }
+                else
+                {
+                    if (Role == 2)
+                    {
+                        RoleString = "Водитель";
+                    }
+                    else
+                    {
+                        if (Role == 3)
+                        {
+                            RoleString = "Кондуктор";
+                        }
+                        else
+                        {
+                            RoleString = "Неизвестен";
+                        }
+                    }
+                }
+                return RoleString;
+            }
+            set { }
+        }
     }
 }

@@ -9,25 +9,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Flight_date)
+            Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Start_time)
+            Start time
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.End_time)
+            End time
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Id_Route)
+            Route Number
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Id_Driver)
+            Driver
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Id_Conductor)
+            Conductor
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Id_Transport)
+            Transport number
         </th>
         <th></th>
     </tr>
@@ -44,16 +44,16 @@
             @Html.DisplayFor(modelItem => item.End_time)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Id_Route)
+            @Html.DisplayFor(modelItem => item.GetRouteNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Id_Driver)
+            @Html.DisplayFor(modelItem => item.GetDriverName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Id_Conductor)
+            @Html.DisplayFor(modelItem => item.GetConductorName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Id_Transport)
+            @Html.DisplayFor(modelItem => item.GetTransport)
         </td>
     </tr>
 }

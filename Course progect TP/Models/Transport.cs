@@ -14,5 +14,22 @@ namespace Course_progect_TP.Models
         public string Number { get; set; }
         public string Release_year { get; set; }
         public int Transport_state { get; set; }
+        public string GetTransportState
+        {
+            get
+            {
+                String state;
+                if (Transport_state == 1)
+                {
+                    state = "Исправен";
+                }
+                else
+                {
+                    state = "На тех. обслуживании";
+                }
+                return state;
+            }
+            set { }
+        }
     }
 }

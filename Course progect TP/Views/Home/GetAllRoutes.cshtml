@@ -20,24 +20,24 @@
             </th>
         }
         <th>
-            @Html.DisplayNameFor(model => model.RouteNumber)
+            Route Number
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Start_stop)
+            Start stop
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Final_stop)
+            Final stop
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            Price
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Travel_time)
+            Travel time
         </th>
         @if (User.IsInRole("Admin"))
         {
             <th>
-                @Html.DisplayNameFor(model => model.Route_state)
+                State
             </th>
             <td>
                 Change
@@ -78,15 +78,15 @@
                         @Html.DisplayFor(modelItem => item.GetState)
                     </td>
                     <td>
-                        @Html.ActionLink("Remove", "ChangeState", new { id = item.Id_Route, state = 2 })
+                        @Html.ActionLink("Снять", "ChangeState", new { id = item.Id_Route, state = 2 })
                     </td>
                 }
                 <td>
-                    @Html.ActionLink("Flights", "GetFlights", new { id = item.Id_Route })
+                    @Html.ActionLink("Рейсы", "GetFlights", new { id = item.Id_Route })
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        @Html.ActionLink("| Edit ", "EditRoute", new { id = item.Id_Route })
-                        @Html.ActionLink("| Delete", "DeleteRoute", new { id = item.Id_Route })
+                        @Html.ActionLink("| Редактировать ", "EditRoute", new { id = item.Id_Route })
+                        @Html.ActionLink("| Удалить", "DeleteRoute", new { id = item.Id_Route })
                     }
                 </td>
             </tr>
@@ -118,13 +118,13 @@
                         @Html.DisplayFor(modelItem => item.GetState)
                     </td>
                     <td>
-                        @Html.ActionLink("To accept", "ChangeState", new { id = item.Id_Route, state = 1 })
+                        @Html.ActionLink("Принять", "ChangeState", new { id = item.Id_Route, state = 1 })
 
                     </td>              
                     <td>
-                        @Html.ActionLink("Flights", "GetFlights", new { id = item.Id_Route })
-                        @Html.ActionLink("| Edit ", "EditRoute", new { id = item.Id_Route })
-                        @Html.ActionLink("| Delete", "DeleteRoute", new { id = item.Id_Route })
+                        @Html.ActionLink("Рейсы", "GetFlights", new { id = item.Id_Route })
+                        @Html.ActionLink("| Редактировать ", "EditRoute", new { id = item.Id_Route })
+                        @Html.ActionLink("| Удалить", "DeleteRoute", new { id = item.Id_Route })
                     </td>
                 </tr>
             }

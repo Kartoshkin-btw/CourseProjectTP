@@ -24,11 +24,11 @@ namespace Course_progect_TP.Models
                 String State;
                 if (Route_state == 1)
                 {
-                    State = "Accepted";
+                    State = "Принят";
                 }
                 else
                 {
-                    State = "Not accepted";
+                    State = "Не принят";
                 }
                 return State;
             }

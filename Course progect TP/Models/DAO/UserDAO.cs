@@ -25,7 +25,7 @@ namespace Course_progect_TP.Models.DAO
                     user.Patronymic = Convert.ToString(reader["Patronymic"]);
                     user.Date_of_birth = Convert.ToString(reader["Date_of_birth"]);
                     user.Experience = Convert.ToInt32(reader["Experience"]);
-                    user.Role = Convert.ToString(reader["Role"]);
+                    user.Role = Convert.ToInt32(reader["Role"]);
                     user.Login = Convert.ToString(reader["Login"]);
                     userList.Add(user);
                 }
