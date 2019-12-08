@@ -13,12 +13,6 @@
 }
 <table class="table">
     <tr>
-        @if (User.IsInRole("Admin"))
-        {
-            <th>
-                @Html.DisplayNameFor(model => model.Id_Route)
-            </th>
-        }
         <th>
             Route Number
         </th>
@@ -51,12 +45,6 @@
         if (item.Route_state == 1)
         {
             <tr>
-                @if (User.IsInRole("Admin"))
-                {
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id_Route)
-                    </td>
-                }
                 <td>
                     @Html.DisplayFor(modelItem => item.RouteNumber)
                 </td>
@@ -78,7 +66,7 @@
                         @Html.DisplayFor(modelItem => item.GetState)
                     </td>
                     <td>
-                        @Html.ActionLink("Снять", "ChangeState", new { id = item.Id_Route, state = 2 })
+                        @Html.ActionLink("Снять", "ChangeStateRoute", new { id = item.Id_Route, state = 2 })
                     </td>
                 }
                 <td>
@@ -95,10 +83,7 @@
         {
             if (User.IsInRole("Admin"))
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id_Route)
-                    </td>                    
+                <tr>                  
                     <td>
                         @Html.DisplayFor(modelItem => item.RouteNumber)
                     </td>
@@ -118,7 +103,7 @@
                         @Html.DisplayFor(modelItem => item.GetState)
                     </td>
                     <td>
-                        @Html.ActionLink("Принять", "ChangeState", new { id = item.Id_Route, state = 1 })
+                        @Html.ActionLink("Принять", "ChangeStateRoute", new { id = item.Id_Route, state = 1 })
 
                     </td>              
                     <td>

@@ -18,9 +18,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id_User)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Surname)
         </th>
         <th>
@@ -47,9 +44,6 @@
 @foreach (var item in Model) {
 <tr>
     <td>
-        @Html.DisplayFor(modelItem => item.Id_User)
-    </td>
-    <td>
         @Html.DisplayFor(modelItem => item.Surname)
     </td>
     <td>
@@ -71,6 +65,7 @@
         @Html.DisplayFor(modelItem => item.Login)
     </td>
     <td>
+        @Html.ActionLink("Назначить должность", "SetRoleUser", new { id = item.Id_User })|
         @Html.ActionLink("Редактировать", "EditUser", new { id = item.Id_User }) |
         @Html.ActionLink("Удалить", "DeleteUser", new { id = item.Id_User })
     </td>

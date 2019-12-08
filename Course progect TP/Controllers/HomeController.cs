@@ -219,6 +219,14 @@ namespace Course_progect_TP.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult CreateFlight()
         {
+            SelectList routelist = new SelectList(routeDAO.GetAllRoutes(), "Id_Route", "RouteNumber");
+            SelectList driverlist = new SelectList(userDAO.GetDrivers(), "Id_User", "Name");
+            SelectList conductorlist = new SelectList(userDAO.GetConductors(), "Id_User", "Name");
+            SelectList transportlist = new SelectList(transportDAO.GetReadyTransports(), "Id_Transport", "Model");
+            ViewBag.RouteList = routelist;
+            ViewBag.DriverList = driverlist;
+            ViewBag.ConductorList = conductorlist;
+            ViewBag.TransportList = transportlist;
             return View();
         }
         [HttpPost]
@@ -227,7 +235,7 @@ namespace Course_progect_TP.Controllers
             try
             {
                 if (flightDAO.CreateFlight(flight))
-                    return Redirect("GetAllRoutes)");
+                    return Redirect("GetAllRoutes");
                 else
                     return View("CreateFlight");
             }
@@ -239,6 +247,14 @@ namespace Course_progect_TP.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult EditFlight(int id)
         {
+            SelectList routelist = new SelectList(routeDAO.GetAllRoutes(), "Id_Route", "RouteNumber");
+            SelectList driverlist = new SelectList(userDAO.GetDrivers(), "Id_User", "Name");
+            SelectList conductorlist = new SelectList(userDAO.GetConductors(), "Id_User", "Name");
+            SelectList transportlist = new SelectList(transportDAO.GetReadyTransports(), "Id_Transport", "Model");
+            ViewBag.RouteList = routelist;
+            ViewBag.DriverList = driverlist;
+            ViewBag.ConductorList = conductorlist;
+            ViewBag.TransportList = transportlist;
             return View();
         }
         [HttpPost]
@@ -287,10 +303,34 @@ namespace Course_progect_TP.Controllers
             return View(flightDAO.GetConductorsFlights(User.Identity.Name));
         }
         [Authorize(Roles = "Admin")]
-        public ActionResult ChangeState(int id, int state)
+        public ActionResult ChangeStateRoute(int id, int state)
         {
             routeDAO.ChangeState(id, state);
             return RedirectToAction("GetAllRoutes", new { Route_State = state });
+        }
+        public ActionResult ChangeStateTransport(int id, int state)
+        {
+            transportDAO.ChangeState(id, state);
+            return RedirectToAction("GetAllTransports", new { Transport_state = state});
+        }
+        public ActionResult SetRoleUser(int id)
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SetRoleUser(int id, int Role)
+        {
+            try
+            {
+                if (userDAO.SetRoleUser(id, Role))
+                    return RedirectToAction("GetAllUsers");
+                else
+                    return View("SetRoleUser");
+            }
+            catch
+            {
+                return View("SetRoleUser");
+            }
         }
     }
 }

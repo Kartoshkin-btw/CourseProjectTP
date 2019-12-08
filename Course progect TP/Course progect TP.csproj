@@ -177,6 +177,7 @@
     <Compile Include="Models\DAO\FlightDAO.cs" />
     <Compile Include="Models\DAO\UserDAO.cs" />
     <Compile Include="Models\Flight.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\DAO\TransportDAO.cs" />
     <Compile Include="Models\DAO\RouteDAO.cs" />
@@ -260,6 +261,7 @@
     <Content Include="Views\Home\DeleteFlight.cshtml" />
     <Content Include="Views\Home\GetDriversFlights.cshtml" />
     <Content Include="Views\Home\GetConductorsFlights.cshtml" />
+    <Content Include="Views\Home\SetRoleUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

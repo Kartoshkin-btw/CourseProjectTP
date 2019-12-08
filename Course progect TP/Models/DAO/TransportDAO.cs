@@ -48,7 +48,7 @@ namespace Course_progect_TP.Models.DAO
                 cmd.Parameters.Add(new SqlParameter("@Model", transport.Model));
                 cmd.Parameters.Add(new SqlParameter("@Number", transport.Number));
                 cmd.Parameters.Add(new SqlParameter("@Release_Year", transport.Release_year));
-                cmd.Parameters.Add(new SqlParameter("@Transport_state", transport.Transport_state));
+                cmd.Parameters.Add(new SqlParameter("@Transport_state", 1));
                 cmd.ExecuteNonQuery();
             }
             catch (Exception)
@@ -67,11 +67,10 @@ namespace Course_progect_TP.Models.DAO
             Connect();
             try
             {
-                SqlCommand cmd = new SqlCommand("UPDATE [Transport] SET Model = @Model, Number = @Number, Release_Year = @Release_Year, Transport_state = @Transport_state WHERE Id_Transport = @Id_Transport", Connection);
+                SqlCommand cmd = new SqlCommand("UPDATE [Transport] SET Model = @Model, Number = @Number, Release_Year = @Release_Year WHERE Id_Transport = @Id_Transport", Connection);
                 cmd.Parameters.Add(new SqlParameter("@Model", transport.Model));
                 cmd.Parameters.Add(new SqlParameter("@Number", transport.Number));
                 cmd.Parameters.Add(new SqlParameter("@Release_Year", transport.Release_year));
-                cmd.Parameters.Add(new SqlParameter("@Transport_state", transport.Transport_state));
                 cmd.Parameters.Add(new SqlParameter("@Id_Transport", id));
                 cmd.ExecuteNonQuery();
             }
@@ -131,6 +130,52 @@ namespace Course_progect_TP.Models.DAO
                 Disconnect();
             }
             return TransportInf;
+        }
+        public List<Transport> GetReadyTransports()
+        {
+            Connect();
+            List<Transport> transportList = new List<Transport>();
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM [Transport] WHERE Transport_state = 1", Connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Transport transport = new Transport();
+                    transport.Id_Transport = Convert.ToInt32(reader["Id_Transport"]);
+                    transport.Model = Convert.ToString(reader["Model"]) + "( " + Convert.ToString(reader["Number"]) + ")";
+                    transportList.Add(transport);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return transportList;
+        }
+        public void ChangeState(int id, int state)
+        {
+            Connect();
+            try
+            {
+                SqlCommand command = new SqlCommand("UPDATE [Transport] SET Transport_state = @Transport_state WHERE Id_Transport = @Id_Transport", Connection);
+                command.Parameters.Add(new SqlParameter("@Transport_state", state));
+                command.Parameters.Add(new SqlParameter("@Id_Transport", id));
+                command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Disconnect();
+            }
         }
     }
 }

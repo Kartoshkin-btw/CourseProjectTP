@@ -79,8 +79,6 @@ namespace Course_progect_TP.Models
         [Display(Name = "Подтверждение пароля")]
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
-        [Display(Name ="Должность")]
-        public int Role { get; set; }
     }
 
     public class ResetPasswordViewModel

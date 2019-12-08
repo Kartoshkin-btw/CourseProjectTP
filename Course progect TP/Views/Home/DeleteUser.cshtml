@@ -10,66 +10,10 @@
 <div>
     <h4>User</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Surname)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Surname)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Patronymic)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Patronymic)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Date_of_birth)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date_of_birth)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Experience)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Experience)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Role)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Role)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Login)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Login)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

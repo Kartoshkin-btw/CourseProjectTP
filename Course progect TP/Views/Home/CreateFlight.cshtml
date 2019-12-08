@@ -16,7 +16,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Flight_date, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Flight date", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Flight_date, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Flight_date, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Start_time, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Start time", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Start_time, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Start_time, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.End_time, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("End time", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.End_time, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.End_time, "", new { @class = "text-danger" })
@@ -40,34 +40,30 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Id_Route, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Route", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Id_Route, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id_Route, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Id_Route, ViewBag.RouteList as SelectList)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Id_Driver, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Driver", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Id_Driver, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id_Driver, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Id_Driver, ViewBag.DriverList as SelectList)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Id_Conductor, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Conductor", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Id_Conductor, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id_Conductor, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Id_Conductor, ViewBag.ConductorList as SelectList)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Id_Transport, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Transport", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Id_Transport, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id_Transport, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Id_Transport, ViewBag.TransportList as SelectList)
             </div>
         </div>
 

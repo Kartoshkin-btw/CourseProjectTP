@@ -10,58 +10,8 @@
 <div>
     <h4>Route</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.RouteNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RouteNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Start_stop)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Start_stop)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Final_stop)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Final_stop)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Travel_time)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Travel_time)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Route_state)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Route_state)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

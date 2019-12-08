@@ -142,5 +142,77 @@ namespace Course_progect_TP.Models.DAO
             }
             return Name;
         }
+        public bool SetRoleUser(int id, int Role)
+        {
+            bool result = true;
+            Connect();
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return result;
+        }
+        public List<User> GetDrivers()
+        {
+            Connect();
+            List<User> userList = new List<User>();
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM [User] WHERE Role = 2", Connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    User user = new User();
+                    user.Id_User = Convert.ToInt32(reader["Id_User"]);
+                    user.Name = Convert.ToString(reader["Surname"]) + " " + Convert.ToString(reader["name"]) + " " + Convert.ToString(reader["Patronymic"]);
+                    userList.Add(user);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return userList;
+        }
+        public List<User> GetConductors()
+        {
+            Connect();
+            List<User> userList = new List<User>();
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM [User] WHERE Role = 3", Connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    User user = new User();
+                    user.Id_User = Convert.ToInt32(reader["Id_User"]);
+                    user.Name = Convert.ToString(reader["Surname"]) + " " + Convert.ToString(reader["name"]) + " " + Convert.ToString(reader["Patronymic"]);
+                    userList.Add(user);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return userList;
+        }
     }
 }

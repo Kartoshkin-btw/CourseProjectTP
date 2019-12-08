@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Web.Mvc;
 
 namespace Course_progect_TP.Models.DAO
 {
@@ -50,7 +51,7 @@ namespace Course_progect_TP.Models.DAO
                 cmd.Parameters.Add(new SqlParameter("@Final_stop", route.Final_stop));
                 cmd.Parameters.Add(new SqlParameter("@Price", route.Price));
                 cmd.Parameters.Add(new SqlParameter("@Travel_time", route.Travel_time));
-                cmd.Parameters.Add(new SqlParameter("@Route_state", route.Route_state));
+                cmd.Parameters.Add(new SqlParameter("@Route_state", 2));
                 cmd.ExecuteNonQuery();
             }
             catch (Exception)
@@ -75,7 +76,7 @@ namespace Course_progect_TP.Models.DAO
                 cmd.Parameters.Add(new SqlParameter("@Final_stop", route.Final_stop));
                 cmd.Parameters.Add(new SqlParameter("@Price", route.Price));
                 cmd.Parameters.Add(new SqlParameter("@Travel_time", route.Travel_time));
-                cmd.Parameters.Add(new SqlParameter("@Route_state", route.Route_state));
+                cmd.Parameters.Add(new SqlParameter("@Route_state", 2));
                 cmd.Parameters.Add(new SqlParameter("@Id_Route", id));
                 cmd.ExecuteNonQuery();
             }
