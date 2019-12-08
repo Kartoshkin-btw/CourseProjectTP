@@ -5,7 +5,7 @@
 }
 
 <h2>Flights</h2>
-@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+@if (Request.IsAuthenticated && User.IsInRole("Dispatcher"))
 {
     <p>
         @Html.ActionLink("Create New Flight", "CreateFlight")
@@ -67,7 +67,7 @@
                     @Html.DisplayFor(modelItem => item.GetTransport)
                 </td>
             }
-            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            @if (Request.IsAuthenticated && User.IsInRole("Dispatcher"))
             {
                 <td>
                     @Html.ActionLink("Редактировать", "EditFlight", new { id = item.Id_Flight }) |

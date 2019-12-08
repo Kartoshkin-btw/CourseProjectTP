@@ -5,7 +5,7 @@
 }
 
 <h2>Routes</h2>
-@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+@if (Request.IsAuthenticated && User.IsInRole("Dispatcher"))
 {
     <p>
         @Html.ActionLink("Create new route", "CreateRoute")
@@ -28,7 +28,7 @@
         <th>
             Travel time
         </th>
-        @if (User.IsInRole("Admin"))
+        @if (User.IsInRole("Dispatcher"))
         {
             <th>
                 State
@@ -60,7 +60,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Travel_time)
                 </td>
-                @if (User.IsInRole("Admin"))
+                @if (User.IsInRole("Dispatcher"))
                 {
                     <td>
                         @Html.DisplayFor(modelItem => item.GetState)
@@ -71,7 +71,7 @@
                 }
                 <td>
                     @Html.ActionLink("Рейсы", "GetFlights", new { id = item.Id_Route })
-                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    @if (Request.IsAuthenticated && User.IsInRole("Dispatcher"))
                     {
                         @Html.ActionLink("| Редактировать ", "EditRoute", new { id = item.Id_Route })
                         @Html.ActionLink("| Удалить", "DeleteRoute", new { id = item.Id_Route })
@@ -81,9 +81,9 @@
         }
         else
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Dispatcher"))
             {
-                <tr>                  
+                <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.RouteNumber)
                     </td>
@@ -105,7 +105,7 @@
                     <td>
                         @Html.ActionLink("Принять", "ChangeStateRoute", new { id = item.Id_Route, state = 1 })
 
-                    </td>              
+                    </td>
                     <td>
                         @Html.ActionLink("Рейсы", "GetFlights", new { id = item.Id_Route })
                         @Html.ActionLink("| Редактировать ", "EditRoute", new { id = item.Id_Route })

@@ -40,7 +40,14 @@ namespace Course_progect_TP.Models
                         }
                         else
                         {
-                            RoleString = "Не назначена";
+                            if (Id_Role == 4)
+                            {
+                                RoleString = "Диспетчер";
+                            }
+                            else
+                            {
+                                RoleString = "Не назначена";
+                            }
                         }
                     }
                 }

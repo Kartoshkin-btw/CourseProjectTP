@@ -7,22 +7,26 @@
 <p>
     @Html.ActionLink("Show routes", "GetAllRoutes")
 </p>
-@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+@if (User.IsInRole("Dispatcher"))
 {
-    <p>
-        @Html.ActionLink("Show transports", "GetAllTransports")
-    </p>
+<p>
+    @Html.ActionLink("Show transports", "GetAllTransports")
+</p>
+}
+@if (User.IsInRole("Admin"))
+{
     <p>
         @Html.ActionLink("Show users", "GetAllUsers")
     </p>
 }
-@if (Request.IsAuthenticated && User.IsInRole("Driver"))
+
+@if (User.IsInRole("Driver"))
 {
     <p>
         @Html.ActionLink("Show my flights", "GetDriversFlights")
     </p>
 }
-@if (Request.IsAuthenticated && User.IsInRole("Conductor"))
+@if (User.IsInRole("Conductor"))
 {
     <p>
         @Html.ActionLink("Show my flights", "GetConductorsFlights")

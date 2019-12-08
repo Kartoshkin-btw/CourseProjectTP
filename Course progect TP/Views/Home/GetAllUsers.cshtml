@@ -10,10 +10,7 @@
     @Html.ActionLink("Create new user", "CreateUser")
 </p>
 <p>
-    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-    {
-        @Html.ActionLink("Register new user", "Register", "Account")
-    }
+    @Html.ActionLink("Register new user", "Register", "Account")
 </p>
 <table class="table">
     <tr>
@@ -41,36 +38,37 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Surname)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Patronymic)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Date_of_birth)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Experience)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.GetRole)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Login)
-    </td>
-    <td>
-        @Html.ActionLink("Назначить должность", "SetRoleUser", new { id = item.Id_User })|
-        @Html.ActionLink("Редактировать", "EditUser", new { id = item.Id_User}) |
-        @Html.ActionLink("Удалить", "DeleteUser", new { id = item.Id_User })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patronymic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_of_birth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Experience)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GetRole)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.ActionLink("Назначить должность", "SetRoleUser", new { id = item.Id_User })|
+                @Html.ActionLink("Редактировать", "EditUser", new { id = item.Id_User }) |
+                @Html.ActionLink("Удалить", "DeleteUser", new { id = item.Id_User })
+            </td>
+        </tr>
+    }
 
 </table>
 <p>

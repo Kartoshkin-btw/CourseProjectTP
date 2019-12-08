@@ -23,7 +23,7 @@ namespace Course_progect_TP.Controllers
         {
             return View(routeDAO.GetAllRoutes());
         }
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles ="Dispatcher")]
         public ActionResult CreateRoute()
         {
             return View();
@@ -43,7 +43,7 @@ namespace Course_progect_TP.Controllers
                 return View("CreateRoute");
             }
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Dispatcher")]
         public ActionResult EditRoute(int id)
         {
             return View();
@@ -63,7 +63,7 @@ namespace Course_progect_TP.Controllers
                 return View("EditRoute");
             }
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Dispatcher")]
         public ActionResult DeleteRoute(int id)
         {
             return View();
@@ -83,12 +83,12 @@ namespace Course_progect_TP.Controllers
                 return View("DeleteRoute");
             }
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Dispatcher")]
         public ActionResult GetAllTransports()
         {
             return View(transportDAO.GetAllTransports());
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Dispatcher")]
         public ActionResult CreateTransport()
         {
             return View();
@@ -108,7 +108,7 @@ namespace Course_progect_TP.Controllers
                 return View("CreateTransport");
             }
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Dispatcher")]
         public ActionResult EditTransport(int id)
         {
             return View();
@@ -128,7 +128,7 @@ namespace Course_progect_TP.Controllers
                 return View("EditTransport");
             }
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Dispatcher")]
         public ActionResult DeleteTransport(int id)
         {
             return View();
@@ -217,7 +217,7 @@ namespace Course_progect_TP.Controllers
         {
             return View(flightDAO.GetFlights(id));
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Dispatcher")]
         public ActionResult CreateFlight()
         {
             SelectList routelist = new SelectList(routeDAO.GetAllRoutes(), "Id_Route", "RouteNumber");
@@ -245,7 +245,7 @@ namespace Course_progect_TP.Controllers
                 return View("CreateFlight");
             }
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Dispatcher")]
         public ActionResult EditFlight(int id)
         {
             SelectList routelist = new SelectList(routeDAO.GetAllRoutes(), "Id_Route", "RouteNumber");
@@ -273,7 +273,7 @@ namespace Course_progect_TP.Controllers
                 return View("EditFlight");
             }
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Dispatcher")]
         public ActionResult DeleteFlight(int id)
         {
             return View();
@@ -303,17 +303,19 @@ namespace Course_progect_TP.Controllers
         {
             return View(flightDAO.GetConductorsFlights(User.Identity.Name));
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Dispatcher")]
         public ActionResult ChangeStateRoute(int id, int state)
         {
             routeDAO.ChangeState(id, state);
             return RedirectToAction("GetAllRoutes", new { Route_State = state });
         }
+        [Authorize(Roles = "Dispatcher")]
         public ActionResult ChangeStateTransport(int id, int state)
         {
             transportDAO.ChangeState(id, state);
             return RedirectToAction("GetAllTransports", new { Transport_state = state});
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult SetRoleUser(int id)
         {
             SelectList rolelist = new SelectList(userDAO.GetAllRoles(), "Id_Role", "Name");
