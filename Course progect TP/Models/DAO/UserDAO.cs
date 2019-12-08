@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
+using System.Web.Mvc;
 
 namespace Course_progect_TP.Models.DAO
 {
@@ -25,7 +26,7 @@ namespace Course_progect_TP.Models.DAO
                     user.Patronymic = Convert.ToString(reader["Patronymic"]);
                     user.Date_of_birth = Convert.ToString(reader["Date_of_birth"]);
                     user.Experience = Convert.ToInt32(reader["Experience"]);
-                    user.Role = Convert.ToInt32(reader["Role"]);
+                    user.Id_Role = Convert.ToInt32(reader["Id_Role"]);
                     user.Login = Convert.ToString(reader["Login"]);
                     userList.Add(user);
                 }
@@ -53,7 +54,7 @@ namespace Course_progect_TP.Models.DAO
                 cmd.Parameters.Add(new SqlParameter("@Patronymic", user.Name));
                 cmd.Parameters.Add(new SqlParameter("@Date_of_birth", user.Date_of_birth));
                 cmd.Parameters.Add(new SqlParameter("@Experience", user.Experience));
-                cmd.Parameters.Add(new SqlParameter("@Role", user.Role));
+                cmd.Parameters.Add(new SqlParameter("@Role", 0));
                 cmd.Parameters.Add(new SqlParameter("@Login", user.Login));
                 cmd.ExecuteNonQuery();
             }
@@ -73,13 +74,12 @@ namespace Course_progect_TP.Models.DAO
             Connect();
             try
             {
-                SqlCommand cmd = new SqlCommand("UPDATE [User] SET Surname = @Surname, Name = @Name, Patronymic = @Patronymic, Date_of_birth = @Date_of_birth, Experience = @Experience, Role = @Role, Login = @Login WHERE Id_User = @Id_User", Connection);
+                SqlCommand cmd = new SqlCommand("UPDATE [User] SET Surname = @Surname, Name = @Name, Patronymic = @Patronymic, Date_of_birth = @Date_of_birth, Experience = @Experience, Login = @Login WHERE Id_User = @Id_User", Connection);
                 cmd.Parameters.Add(new SqlParameter("@Surname", user.Surname));
                 cmd.Parameters.Add(new SqlParameter("@Name", user.Name));
                 cmd.Parameters.Add(new SqlParameter("@Patronymic", user.Patronymic));
                 cmd.Parameters.Add(new SqlParameter("@Date_of_birth", user.Date_of_birth));
                 cmd.Parameters.Add(new SqlParameter("@Experience", user.Experience));
-                cmd.Parameters.Add(new SqlParameter("@Role", user.Role));
                 cmd.Parameters.Add(new SqlParameter("@Login", user.Login));
                 cmd.Parameters.Add(new SqlParameter("@Id_User", id));
                 cmd.ExecuteNonQuery();
@@ -142,13 +142,21 @@ namespace Course_progect_TP.Models.DAO
             }
             return Name;
         }
-        public bool SetRoleUser(int id, int Role)
+        public bool SetRoleUser(int id, User user)
         {
             bool result = true;
             Connect();
             try
             {
-
+                SqlCommand command = new SqlCommand("UPDATE [User] SET Id_Role = @Id_Role WHERE Id_User = @Id_User", Connection);
+                command.Parameters.Add(new SqlParameter("@Id_Role", user.Id_Role));
+                command.Parameters.Add(new SqlParameter("@Id_User", id));
+                command.ExecuteNonQuery();
+                SqlCommand command1 = new SqlCommand("SELECT [login] FROM [User] WHERE Id_User = @Id_User", Connection);
+                command1.Parameters.Add(new SqlParameter("@Id_User", id));
+                String login = Convert.ToString(command1.ExecuteScalar());
+                RoleDAO roleDAO = new RoleDAO();
+                roleDAO.SetRoleUser(login, user.Id_Role);
             }
             catch (Exception)
             {
@@ -166,7 +174,7 @@ namespace Course_progect_TP.Models.DAO
             List<User> userList = new List<User>();
             try
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM [User] WHERE Role = 2", Connection);
+                SqlCommand command = new SqlCommand("SELECT * FROM [User] WHERE Id_Role = 2", Connection);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -193,7 +201,7 @@ namespace Course_progect_TP.Models.DAO
             List<User> userList = new List<User>();
             try
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM [User] WHERE Role = 3", Connection);
+                SqlCommand command = new SqlCommand("SELECT * FROM [User] WHERE Id_Role = 3", Connection);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -213,6 +221,33 @@ namespace Course_progect_TP.Models.DAO
                 Disconnect();
             }
             return userList;
+        }
+        public List<Role> GetAllRoles()
+        {
+            Connect();
+            List<Role> roleList = new List<Role>();
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM [Role]", Connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Role role = new Role();
+                    role.Id_Role = Convert.ToInt32(reader["Id_Role"]);
+                    role.Name = Convert.ToString(reader["Name"]);
+                    roleList.Add(role);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return roleList;
         }
     }
 }

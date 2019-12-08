@@ -14,6 +14,7 @@ namespace Course_progect_TP.Controllers
         TransportDAO transportDAO = new TransportDAO();
         UserDAO userDAO = new UserDAO();
         FlightDAO flightDAO = new FlightDAO();
+        RoleDAO roleDAO = new RoleDAO();
         public ActionResult Index()
         {
             return View("Index");
@@ -315,14 +316,16 @@ namespace Course_progect_TP.Controllers
         }
         public ActionResult SetRoleUser(int id)
         {
+            SelectList rolelist = new SelectList(userDAO.GetAllRoles(), "Id_Role", "Name");
+            ViewBag.RoleList = rolelist;
             return View();
         }
         [HttpPost]
-        public ActionResult SetRoleUser(int id, int Role)
+        public ActionResult SetRoleUser(int id, User user)
         {
             try
             {
-                if (userDAO.SetRoleUser(id, Role))
+                if (userDAO.SetRoleUser(id, user))
                     return RedirectToAction("GetAllUsers");
                 else
                     return View("SetRoleUser");

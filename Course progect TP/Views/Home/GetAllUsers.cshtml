@@ -33,7 +33,7 @@
             @Html.DisplayNameFor(model => model.Experience)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Role)
+            Role
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Login)
@@ -66,7 +66,7 @@
     </td>
     <td>
         @Html.ActionLink("Назначить должность", "SetRoleUser", new { id = item.Id_User })|
-        @Html.ActionLink("Редактировать", "EditUser", new { id = item.Id_User }) |
+        @Html.ActionLink("Редактировать", "EditUser", new { id = item.Id_User}) |
         @Html.ActionLink("Удалить", "DeleteUser", new { id = item.Id_User })
     </td>
 </tr>
