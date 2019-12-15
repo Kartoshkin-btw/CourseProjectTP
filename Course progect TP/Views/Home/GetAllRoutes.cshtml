@@ -4,38 +4,38 @@
     ViewBag.Title = "GetAllRoutes";
 }
 
-<h2>Routes</h2>
+<h2>Маршруты</h2>
 @if (Request.IsAuthenticated && User.IsInRole("Dispatcher"))
 {
     <p>
-        @Html.ActionLink("Create new route", "CreateRoute")
+        @Html.ActionLink("Добавить маршрут", "CreateRoute")
     </p>
 }
 <table class="table">
     <tr>
         <th>
-            Route Number
+            Номер маршрута
         </th>
         <th>
-            Start stop
+            Начальная остановка
         </th>
         <th>
-            Final stop
+            Конечная остановка
         </th>
         <th>
-            Price
+            Стоимость
         </th>
         <th>
-            Travel time
+            Время в пути
         </th>
         @if (User.IsInRole("Dispatcher"))
         {
             <th>
-                State
+                Состояние
             </th>
-            <td>
-                Change
-            </td>
+            <th>
+                Изменить состояние
+            </th>
         }
         <th></th>
     </tr>
@@ -118,5 +118,5 @@
 
 </table>
 <p>
-    @Html.ActionLink("To the main", "Index")
+    @Html.ActionLink("На главную", "Index")
 </p>

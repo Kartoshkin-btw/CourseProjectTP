@@ -4,27 +4,27 @@
     ViewBag.Title = "GetAllTransports";
 }
 
-<h2>Transports</h2>
+<h2>Транспорт</h2>
 
 <p>
-    @Html.ActionLink("Create New Transport", "CreateTransport")
+    @Html.ActionLink("Добавить транспорт", "CreateTransport")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Model)
+            Модель
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Number)
+            Номер
         </th>
         <th>
-            Release year
+            Год выпуска
         </th>
         <th>
-            State
+            Состояние
         </th>
         <th>
-            Change
+            Изменить состояние
         </th>
         <th></th>
     </tr>
@@ -62,5 +62,5 @@
 
 </table>
 <p>
-    @Html.ActionLink("To the main", "Index")
+    @Html.ActionLink("На главную", "Index")
 </p>

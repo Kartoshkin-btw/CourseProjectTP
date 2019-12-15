@@ -51,7 +51,7 @@ namespace Course_progect_TP.Models.DAO
                 SqlCommand cmd = new SqlCommand("INSERT INTO [User] (Surname, Name, Patronymic, Date_of_birth, Experience, Id_Role, Login) VALUES (@Surname, @Name, @Patronymic, @Date_of_birth, @Experience, @Id_Role, @Login)", Connection);
                 cmd.Parameters.Add(new SqlParameter("@Surname", user.Surname));
                 cmd.Parameters.Add(new SqlParameter("@Name", user.Name));
-                cmd.Parameters.Add(new SqlParameter("@Patronymic", user.Name));
+                cmd.Parameters.Add(new SqlParameter("@Patronymic", user.Patronymic));
                 cmd.Parameters.Add(new SqlParameter("@Date_of_birth", user.Date_of_birth));
                 cmd.Parameters.Add(new SqlParameter("@Experience", user.Experience));
                 cmd.Parameters.Add(new SqlParameter("@Id_Role", 5));

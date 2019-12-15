@@ -4,37 +4,37 @@
     ViewBag.Title = "GetFlights";
 }
 
-<h2>Flights</h2>
+<h2>Рейсы</h2>
 @if (Request.IsAuthenticated && User.IsInRole("Dispatcher"))
 {
     <p>
-        @Html.ActionLink("Create New Flight", "CreateFlight")
+        @Html.ActionLink("Добавить рейс", "CreateFlight")
     </p>
 }
 <table class="table">
     <tr>
         <th>
-            Date
+            Дата
         </th>
         <th>
-            Start time
+            Начальное время
         </th>
         <th>
-            End time
+            Время завершения
+        </th>
+        <th>
+            Номер маршрута
         </th>
         @if (Request.IsAuthenticated)
         {
             <th>
-                Route Number
+                Водитель
             </th>
             <th>
-                Driver
+                Кондуктор
             </th>
             <th>
-                Conductor
-            </th>
-            <th>
-                Transport number
+                Транспорт
             </th>
         }
         <th></th>
@@ -52,11 +52,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.End_time)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GetRouteNumber)
+            </td>
+
             @if (Request.IsAuthenticated)
             {
-                <td>
-                    @Html.DisplayFor(modelItem => item.GetRouteNumber)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.GetDriverName)
                 </td>
@@ -80,5 +81,5 @@
 
 </table>
 <p>
-    @Html.ActionLink("To the Routes list", "GetAllRoutes")
+    @Html.ActionLink("Назад", "GetAllRoutes")
 </p>

@@ -2,34 +2,41 @@
 @{
     ViewBag.Title = "Index";
 }
+    <style type="text/css">
+        h1 {
+            font-size: 120%;
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            color: #333366;
+        }
+    </style>
 
-<h2>Urban transport</h2>
+<h2>Система автотранспорта</h2>
 <p>
-    @Html.ActionLink("Show routes", "GetAllRoutes")
+    @Html.ActionLink("Маршруты", "GetAllRoutes")
 </p>
 @if (User.IsInRole("Dispatcher"))
 {
 <p>
-    @Html.ActionLink("Show transports", "GetAllTransports")
+    @Html.ActionLink("Транспорт", "GetAllTransports")
 </p>
 }
 @if (User.IsInRole("Admin"))
 {
     <p>
-        @Html.ActionLink("Show users", "GetAllUsers")
+        @Html.ActionLink("Пользователи", "GetAllUsers")
     </p>
 }
 
 @if (User.IsInRole("Driver"))
 {
     <p>
-        @Html.ActionLink("Show my flights", "GetDriversFlights")
+        @Html.ActionLink("Мои рейсы", "GetDriversFlights")
     </p>
 }
 @if (User.IsInRole("Conductor"))
 {
     <p>
-        @Html.ActionLink("Show my flights", "GetConductorsFlights")
+        @Html.ActionLink("Мои рейсы", "GetConductorsFlights")
     </p>
 }
 
