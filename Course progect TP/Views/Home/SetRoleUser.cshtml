@@ -4,7 +4,7 @@
         ViewBag.Title = "SetRoleUser";
     }
 
-    <h2>Наздачить должность</h2>
+    <h2>Назначить должность</h2>
 
 
     @using (Html.BeginForm())
@@ -14,7 +14,7 @@
         <div class="form-horizontal">
             <hr />
             <div class="form-group">
-                @Html.Label("Role", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Должность", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.Id_Role, ViewBag.RoleList as SelectList)
                 </div>
