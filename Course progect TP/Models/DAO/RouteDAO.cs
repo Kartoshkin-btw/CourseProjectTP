@@ -110,6 +110,33 @@ namespace Course_progect_TP.Models.DAO
             }
             return result;
         }
+        public List<Route> GetReadyRoutes()
+        {
+            Connect();
+            List<Route> routeList = new List<Route>();
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT [Id_Route], [RouteNumber] FROM [Route] WHERE Route_state = 1", Connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Route route = new Route();
+                    route.Id_Route = Convert.ToInt32(reader["Id_Route"]);
+                    route.RouteNumber = Convert.ToString(reader["RouteNumber"]);
+                    routeList.Add(route);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return routeList;
+        }
         public string GetRouteNumber(int id)
         {
             String RouteNumber;

@@ -220,14 +220,10 @@ namespace Course_progect_TP.Controllers
         [Authorize(Roles = "Dispatcher")]
         public ActionResult CreateFlight()
         {
-            SelectList routelist = new SelectList(routeDAO.GetAllRoutes(), "Id_Route", "RouteNumber");
-            SelectList driverlist = new SelectList(userDAO.GetDrivers(), "Id_User", "Name");
-            SelectList conductorlist = new SelectList(userDAO.GetConductors(), "Id_User", "Name");
-            SelectList transportlist = new SelectList(transportDAO.GetReadyTransports(), "Id_Transport", "Model");
-            ViewBag.RouteList = routelist;
-            ViewBag.DriverList = driverlist;
-            ViewBag.ConductorList = conductorlist;
-            ViewBag.TransportList = transportlist;
+            ViewBag.RouteList = new SelectList(routeDAO.GetReadyRoutes(), "Id_Route", "RouteNumber");
+            ViewBag.DriverList = new SelectList(userDAO.GetDrivers(), "Id_User", "Name");
+            ViewBag.ConductorList = new SelectList(userDAO.GetConductors(), "Id_User", "Name");
+            ViewBag.TransportList = new SelectList(transportDAO.GetReadyTransports(), "Id_Transport", "Model");
             return View();
         }
         [HttpPost]
@@ -248,14 +244,10 @@ namespace Course_progect_TP.Controllers
         [Authorize(Roles = "Dispatcher")]
         public ActionResult EditFlight(int id)
         {
-            SelectList routelist = new SelectList(routeDAO.GetAllRoutes(), "Id_Route", "RouteNumber");
-            SelectList driverlist = new SelectList(userDAO.GetDrivers(), "Id_User", "Name");
-            SelectList conductorlist = new SelectList(userDAO.GetConductors(), "Id_User", "Name");
-            SelectList transportlist = new SelectList(transportDAO.GetReadyTransports(), "Id_Transport", "Model");
-            ViewBag.RouteList = routelist;
-            ViewBag.DriverList = driverlist;
-            ViewBag.ConductorList = conductorlist;
-            ViewBag.TransportList = transportlist;
+            ViewBag.RouteList = new SelectList(routeDAO.GetReadyRoutes(), "Id_Route", "RouteNumber");
+            ViewBag.DriverList = new SelectList(userDAO.GetDrivers(), "Id_User", "Name");
+            ViewBag.ConductorList = new SelectList(userDAO.GetConductors(), "Id_User", "Name");
+            ViewBag.TransportList = new SelectList(transportDAO.GetReadyTransports(), "Id_Transport", "Model");
             return View();
         }
         [HttpPost]
